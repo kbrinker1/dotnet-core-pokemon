@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using pkmn_web_app.Models;
 
 namespace pkmn_web_app
 {
@@ -31,7 +32,7 @@ namespace pkmn_web_app
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings")); //Used for accessing appsettings.json
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

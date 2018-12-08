@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using pkmn_web_app.Models;
+using System.Diagnostics;
 
-namespace pkmn_web_app.Controllers
+namespace HelloWorld.Controllers
 {
     public class HomeController : Controller
     {
+        private AppSettings AppSettings { get; set; }
+
+        public HomeController(IOptions<AppSettings> settings)
+        {
+            AppSettings = settings.Value;
+        }
+
+
         public IActionResult Index()
         {
             return View();
@@ -39,5 +44,6 @@ namespace pkmn_web_app.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }
